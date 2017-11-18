@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title %}Welcome to Mystery Books{%endblock%}</title>
+</head>
+<body background="{% static 'base/img/header_full.jpg'%}">
+{% block content %}
+<!--template tag-->
+{% if request.user.is_authenticated %}
+    <h4>
+        Welcome {% if request.user.first_name %}
+        <!--template variables-->
+        {{request.user.first_name}}
+        {%else%}
+        {{request.user.username}}
+        {%endif%}! <a href="{% url 'auth_logout'%}">Log Out</a>
+    </h4>
+{% else %}
+<h4> Welcome unknow usar would you like to become know?<a href="{% url 'auth_login' %}">Jes Become KNOW</a>!</h4>
+{% endif %}
+Welcome to the mystery books store! there are {{count}} books in stock. ur lokatd: {{ request.session.location}}
+{% endblock %}
+</body>
+</html>
