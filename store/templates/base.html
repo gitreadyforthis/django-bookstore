@@ -1,27 +1,77 @@
+{% extends 'bootrstrap3/bootstrap3.html' %}
+
 {% load staticfiles %}
-<!DOCTYPE html>
-<!--suppress ALL -->
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{%block title %}Welcome to Mystery Books{%endblock%}</title>
-</head>
-<body background="{% static 'base/img/header_full.jpg'%}">
-{% block content %}
-<!--template tag-->
-{% if request.user.is_authenticated %}
-    <h4>
-        Welcome {% if request.user.first_name %}
-        <!--template variables-->
-        {{request.user.first_name}}
-        {%else%}
-        {{request.user.username}}
-        {%endif%}! <a href="{% url 'auth_logout'%}">Log Out</a>
-    </h4>
-{% else %}
-<h4> Welcome unknow usar would you like to become know?<a href="{% url 'auth_login' %}">Jes Become KNOW</a>!</h4>
-{% endif %}
-Welcome to the mystery books store! there are {{count}} books in stock. ur lokatd: {{ request.session.location}}
+
+{% load bootstrap3 %}
+{% load bootstrap_themes %}
+
+{% block bootstrap3_extra_head %}
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+<link href="{% static 'base/css/style.css' %}" rel="stylesheet" type="text/css">
 {% endblock %}
-</body>
-</html>
+
+{% block bootstrap3_title %}
+{%block title %}
+Welcome to Mystery Books
+{%endblock%}
+{%endblock%}
+
+{% block bootstrap3_content %}
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="{% url 'index' %}" class="navbar-brand">Mystery Books</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="hvr-curl-top-right"><a href="{% url 'index' %}">Home</a></li>
+                <li class="hvr-curl-top-right"><a href="#about">Home</a> About</li>
+                <li class="hvr-curl-top-right"><a href="#contact">Home</a>Contact</li>
+            </ul>
+            <div class="navbar-form pull-right">
+                <!--template tag-->
+                {% if request.user.is_authenticated %}
+
+                Welcome {% if request.user.first_name %}
+                <!--template variables-->
+                {{request.user.first_name}}
+                {%else%}
+                {{request.user.username}}
+                {%endif%}! <a href="{% url 'auth_logout'%}">Log Out</a>
+
+                {% else %}
+                Welcome unknow usar would you like to become know?<a href="{% url 'registration_register' %}">Jes Become
+                KNOW!</a>
+                Ams yous alreads know?<a href="{% url 'auth_login' %}">Retrieve whats yous know ams</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <img src="{%static 'base/img/header_full.jpg %}" class="bg"/>
+    <div class="parallax">
+        <div class="row">
+            {% block body %}
+            <div class="col-md-8 col-md-offset-2 col-sm-12 maincontent">
+                Welcome To Store!
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<div class="row text-center navbar footer">
+    <div class="col-md-12">
+        <p>2017 Mystery Books</p>
+    </div>
+</div>
+{% endblock %}
+
