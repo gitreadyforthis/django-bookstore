@@ -31,8 +31,8 @@ Welcome to Mystery Books
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="hvr-curl-top-right"><a href="{% url 'index' %}">Home</a></li>
-                <li class="hvr-curl-top-right"><a href="#about">Home</a> About</li>
-                <li class="hvr-curl-top-right"><a href="#contact">Home</a>Contact</li>
+                <li class="hvr-curl-top-right"><a href="#about">About</a></li>
+                <li class="hvr-curl-top-right"><a href="#contact">Contact</a></li>
             </ul>
             <div class="navbar-form pull-right">
                 <!--template tag-->
@@ -46,9 +46,8 @@ Welcome to Mystery Books
                 {%endif%}! <a href="{% url 'auth_logout'%}">Log Out</a>
 
                 {% else %}
-                Welcome unknow usar would you like to become know?<a href="{% url 'registration_register' %}">Jes Become
-                KNOW!</a>
-                Ams yous alreads know?<a href="{% url 'auth_login' %}">Retrieve whats yous know ams</a>
+                Welcome unknownuser<a href="{% url 'registration_register' %}"> Register</a>
+                or<a href="{% url 'auth_login' %}"> Login</a>
                 {% endif %}
 
             </div>
