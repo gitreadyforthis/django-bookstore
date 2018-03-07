@@ -12,10 +12,6 @@ from django.utils import timezone
 from .models import Book, BookOrder, Cart
 
 
-def index(request):
-    return render(request, 'template.html')
-
-
 def store(request):
     books = Book.objects.all()
     context = {
