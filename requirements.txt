@@ -1,6 +1,6 @@
 certifi==2017.11.5
 chardet==3.0.4
-Django==1.8
+Django==1.11.29
 django-bootstrap-themes==3.1.2
 django-bootstrap3==5.4.0
 django-registration-redux==1.1
